@@ -1,0 +1,148 @@
+{
+  "name": "faye",
+  "description": "Simple pub/sub messaging for the web",
+  "homepage": "http://faye.jcoglan.com",
+  "author": {
+    "name": "James Coglan",
+    "email": "jcoglan@gmail.com",
+    "url": "http://jcoglan.com/"
+  },
+  "keywords": [
+    "comet",
+    "websocket",
+    "pubsub",
+    "bayeux",
+    "ajax",
+    "http"
+  ],
+  "license": "MIT",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "main": "./node/faye-node",
+  "browserify": "./browser/faye-browser",
+  "dependencies": {
+    "cookiejar": "",
+    "faye-websocket": ">=0.7.0"
+  },
+  "devDependencies": {
+    "jstest": "",
+    "promises-aplus-tests": "",
+    "wake": ""
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/wake",
+    "test": "node spec/node.js",
+    "promise": "promises-aplus-tests javascript/util/promise.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/faye/faye.git"
+  },
+  "bugs": "http://github.com/faye/faye/issues",
+  "wake": {
+    "javascript": {
+      "sourceDirectory": "javascript",
+      "targetDirectory": "build",
+      "builds": {
+        "src": {
+          "digest": false,
+          "minify": false
+        },
+        "min": {
+          "digest": false,
+          "minify": true,
+          "sourceMap": "src",
+          "tag": "suffix"
+        }
+      },
+      "targets": {
+        "core": {
+          "builds": {
+            "src": false,
+            "min": false
+          },
+          "files": [
+            "_head",
+            "faye",
+            "util/class",
+            "util/event_emitter",
+            "util/namespace",
+            "util/promise",
+            "util/set",
+            "util/uri",
+            "error",
+            "mixins/deferrable",
+            "mixins/publisher",
+            "mixins/timeouts",
+            "mixins/logging",
+            "protocol/grammar",
+            "protocol/extensible",
+            "protocol/channel",
+            "protocol/publication",
+            "protocol/subscription",
+            "protocol/client",
+            "transport/transport"
+          ]
+        },
+        "node/faye-node": {
+          "extend": "core",
+          "builds": {
+            "min": false
+          },
+          "files": [
+            "engines/proxy",
+            "engines/connection",
+            "engines/memory",
+            "protocol/server",
+            "protocol/socket",
+            "transport/node_local",
+            "transport/web_socket",
+            "transport/node_http",
+            "adapters/node_adapter",
+            "adapters/static_server",
+            "_tail"
+          ]
+        },
+        "browser/faye-browser": {
+          "extend": "core",
+          "files": [
+            "util/browser/event",
+            "transport/web_socket",
+            "transport/event_source",
+            "transport/xhr",
+            "transport/cors",
+            "transport/jsonp",
+            "_tail"
+          ]
+        }
+      }
+    },
+    "binary": {
+      "sourceDirectory": ".",
+      "targetDirectory": ".",
+      "builds": {
+        "min": {
+          "digest": false
+        }
+      },
+      "targets": {
+        "lib/faye-browser.js": "build/browser/faye-browser.js",
+        "lib/faye-browser-min.js": "build/browser/faye-browser-min.js",
+        "lib/faye-browser-min.js.map": "build/browser/faye-browser-min.js.map",
+        "build/package.json": "package.json",
+        "build/CHANGELOG.md": "CHANGELOG.md",
+        "build/README.md": "README.md"
+      }
+    }
+  },
+  "readme": "# Faye\n\n* Documentation: http://faye.jcoglan.com\n* Mailing list: http://groups.google.com/group/faye-users\n* Source code: http://github.com/faye/faye\n\nFaye is a set of tools for simple publish-subscribe messaging between web\nclients. It ships with easy-to-use message routing servers for Node.js and Rack\napplications, and clients that can be used on the server and in the browser.\n\n\n## Questions, issues, ideas\n\nPlease raise questions on the [mailing\nlist](http://groups.google.com/group/faye-users), and feel free to announce and\nshare ideas on Faye-related projects there too. I'd appreciate it if we only use\nthe GitHub issue tracker for bona fide bugs; You'll probably get better and\nquicker answers to questions from the mailing list.\n\n\n## Development\n\nTo hack on Faye, you'll need Node in order to build both the gem and the npm\npackage. There are also a few submodules we use for testing. The following\nshould get you up and running:\n\n```bash\n# Download the code from Git\ngit clone git://github.com/faye/faye.git\ncd faye\ngit submodule update --init --recursive\n\n# Install dependencies\nbundle install\nnpm install\n\n# Build Faye\nnpm run-script build\n\n# Run tests\nbundle exec rspec -c spec/\nnode spec/node.js\n```\n\n\n## License\n\n(The MIT License)\n\nCopyright (c) 2009-2013 James Coglan and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the 'Software'), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n",
+  "readmeFilename": "README.md",
+  "_id": "faye@1.0.0",
+  "dist": {
+    "shasum": "5b99add0f40628b2068ac53c00430182b230e5c8"
+  },
+  "_resolved": "git://github.com/faye/faye.git#fd0dc6147d340f0ab88664154f6db16eebaa3ec6",
+  "_from": "faye@git://github.com/faye/faye.git#master"
+}
